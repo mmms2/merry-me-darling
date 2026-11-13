@@ -85,6 +85,11 @@
 @media(max-width:1380px){.christmas-edge{display:none}}
 @media(prefers-reduced-motion:reduce){.christmas-edge .tree-light,.christmas-edge .tree-snow,.christmas-edge .tree-star{animation:none;opacity:1}}
 
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:39px;height:48px;display:grid;place-items:center;z-index:3;border:1px solid #f3dfc75e;border-radius:14px;background:#1c3533d8;color:#fff7ea;font-size:32px;line-height:1;backdrop-filter:blur(7px)}
+.lightbox-prev{left:5px}.lightbox-next{right:5px}.lightbox-nav[hidden]{display:none}
+.lightbox-count{color:#dbcba8;font-size:11px;font-weight:750;letter-spacing:.08em;margin-top:9px}
+.lightbox img{-webkit-user-drag:none;user-select:none;touch-action:pan-y}
+@media(max-width:370px){.lightbox-nav{width:32px;font-size:27px}}
 </style>
 </head>
 <body>
@@ -269,7 +274,7 @@
       <div class="mini-player" id="miniPlayer"><img id="miniCover" class="mini-cover" src="assets/images/royal-proposal.webp" alt="곡 커버"/><button class="mini-open" type="button" id="miniOpen"><div class="mini-title" id="miniTitle">Dear Santa, I'm in Trouble</div><div class="mini-sub" id="miniSub">♪ HOLIDAY RADIO · LOOP ON</div></button><div class="mini-controls"><button id="miniPrev" type="button" aria-label="이전 곡"><svg class="track-skip-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 5 9 12l10 7V5Z" fill="currentColor"/><path d="M5.5 5v14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button><button id="miniPlay" class="mini-play" type="button" aria-label="재생 또는 일시정지">▶</button><button id="miniNext" type="button" aria-label="다음 곡"><svg class="track-skip-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 5 10 7-10 7V5Z" fill="currentColor"/><path d="M18.5 5v14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button></div><div id="miniProgress" class="mini-progress"></div></div>
       <div class="secret-dialog" id="secretOverlay" role="dialog" aria-modal="true" aria-label="봉인된 미발송 메모" aria-hidden="true"><div class="secret-box"><button type="button" class="secret-close" id="secretCloseBtn" aria-label="비밀 메모 닫기">× 닫기</button><div class="secret-overline">✦ THÉO · PRIVATE DRAFT ✦</div><h3>🔐 미발송 메모</h3><p>사랑에 능숙하다고 믿는 남자가 가장 자주 쓰는 애칭은?</p><input id="secretPassword" type="text" autocomplete="off" spellcheck="false" placeholder="영어나 한국어 애칭" aria-label="비밀 메모 암호"/><button type="button" class="secret-submit" id="secretSubmitBtn">잠금 해제 ♡</button><p id="secretFeedback" class="secret-feedback" aria-live="polite"></p><div id="secretRevealed" class="secret-revealed" hidden><b>❄ UN-SENT, 12월의 어느 밤</b><p>오늘의 발견: 내 심장은 굉장히 배은망덕하다. 30년 동안 그토록 훌륭한 주인 밑에서 뛰어 놓고, 고작 누군가를 마주쳤다고 제멋대로 축제를 열다니.<br><br>분명 내가 달링이라고 불렀는데 왜 내가 먼저 녹아내렸지? 이 정도면 내 목소리에 내가 반한 건가? 아니, 그건 평소에도 그랬다. 문제는 이번엔 눈앞의 그 사람 때문에 숨까지 엉망이 됐다는 거다.<br><br>아, 큰일이다. 세기의 로맨티스트가 생애 처음으로 자기 주접에 심장을 빼앗겼다. 그래도 포기할 순 없지. 내일은 별을 바치겠다고 말해 볼까? 별이 모자라면 은하수까지 얹자. 잠깐, 벌써 감동적이잖아. 눈물이 날 것 같군.<br><br>…그런데 달링이 싫다고 하면? 그땐 웃으며 물러나야지. 내 심장은 좀 울겠지만, 세상에서 가장 근사한 사랑은 상대의 대답을 기다릴 줄도 알아야 하니까.</p></div></div></div>
       <div class="toast" id="toast" role="status" aria-live="polite"></div>
-      <div class="lightbox" id="lightbox" role="dialog" aria-label="갤러리 확대"><button class="lightbox-close" type="button" id="lightboxClose" aria-label="닫기">×</button><img id="lightboxImg" alt="테오 사진 크게 보기"/><div class="lightbox-title" id="lightboxTitle"></div></div>
+      <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="갤러리 사진 확대"><button class="lightbox-close" type="button" id="lightboxClose" aria-label="닫기">×</button><button class="lightbox-nav lightbox-prev" type="button" id="lightboxPrev" aria-label="이전 사진">‹</button><img id="lightboxImg" alt="테오 사진 크게 보기" draggable="false"/><button class="lightbox-nav lightbox-next" type="button" id="lightboxNext" aria-label="다음 사진">›</button><div class="lightbox-title" id="lightboxTitle"></div><div class="lightbox-count" id="lightboxCount" aria-live="polite"></div></div>
       <div class="home-indicator" id="homeIndicator"></div>
     </div>
   </main>
@@ -318,25 +323,34 @@ function nextTrack(fromEnded=false){selectTrack(currentIndex+1,true,fromEnded)}
 function previousTrack(){selectTrack(currentIndex-1,true)}
 function togglePlay(){if(audio.paused||audio.ended){userPaused=false;attemptPlay('gesture')}else{userPaused=true;audio.pause();autoplayBlocked=false;noticeAutoplay()}}
 function updateProgress(){const dur=Number.isFinite(audio.duration)&&audio.duration>0?audio.duration:durations[currentIndex];const frac=dur?Math.min(1,audio.currentTime/dur):0;$('currentTime').textContent=niceTime(audio.currentTime);$('duration').textContent=niceTime(dur);$('seekBar').value=String(Math.round(frac*1000));$('miniProgress').style.width=(frac*100).toFixed(2)+'%'}
+let visibleAlbum='전체',lightboxAlbum=[],lightboxIndex=0,lightboxSwipeStart=null;
+function updateLightbox(){
+ if(!lightboxAlbum.length)return;
+ lightboxIndex=(lightboxIndex+lightboxAlbum.length)%lightboxAlbum.length;
+ const item=lightboxAlbum[lightboxIndex];
+ $('lightboxImg').src=item.src;$('lightboxImg').alt=item.title;
+ $('lightboxTitle').textContent=item.title;
+ $('lightboxCount').textContent=(lightboxIndex+1)+' / '+lightboxAlbum.length+' · '+visibleAlbum;
+ $('lightboxPrev').hidden=$('lightboxNext').hidden=lightboxAlbum.length<2;
+ if(lightboxAlbum.length>1){let next=new Image();next.src=lightboxAlbum[(lightboxIndex+1)%lightboxAlbum.length].src}
+}
+function photoSlide(n){if(!$('lightbox').classList.contains('open')||lightboxAlbum.length<2)return;lightboxIndex=(lightboxIndex+n+lightboxAlbum.length)%lightboxAlbum.length;updateLightbox()}
+function closeLightbox(){$('lightbox').classList.remove('open');lightboxSwipeStart=null}
+function showPhoto(items,i,category){visibleAlbum=category;lightboxAlbum=items.slice();lightboxIndex=i;updateLightbox();$('lightbox').classList.add('open');$('lightboxClose').focus({preventScroll:true})}
 function renderGallery(category='전체'){
- const filterNames=['전체','첫사랑','플러팅','일상','코스튬'];
+ visibleAlbum=category;
+ const cats=['전체',...['첫사랑','플러팅','일상','눈물','코스튬'].filter(name=>gallery.some(g=>(g.groups||[g.group]).includes(name)))];
  const tabs=$('galleryTabs');tabs.replaceChildren();
- for(const name of filterNames){
-  const b=create('button','gallery-filter'+(name===category?' active':''),name);
-  b.type='button';b.setAttribute('aria-pressed',String(name===category));
-  b.addEventListener('click',()=>renderGallery(name));tabs.append(b);
- }
+ for(const name of cats){const b=create('button','gallery-filter'+(name===category?' active':''),name);b.type='button';b.setAttribute('aria-pressed',String(name===category));b.addEventListener('click',()=>renderGallery(name));tabs.append(b)}
  const grid=$('galleryGrid');grid.replaceChildren();
- const items=gallery.filter(item=>category==='전체'||(Array.isArray(item.groups)?item.groups.includes(category):item.group===category));
- if(!items.length){grid.append(create('p','gallery-empty','이 앨범에는 아직 등록된 사진이 없어요.'));return}
- for(const item of items){
+ const items=gallery.filter(g=>category==='전체'||(g.groups||[g.group]).includes(category));
+ if(!items.length){grid.append(create('p','gallery-empty','이 앨범에는 아직 사진이 없어요.'));return}
+ items.forEach((item,i)=>{
   const b=create('button','gallery-tile');b.type='button';b.setAttribute('aria-label',item.title+' 사진 확대');
   const im=create('img');im.src=item.src;im.alt=item.title;im.loading='lazy';
   im.onerror=()=>{b.classList.add('gallery-unavailable');im.remove();b.insertBefore(create('span','gallery-fallback','사진을 불러오지 못했어요'),b.firstChild)};
-  const lbl=create('span','gallery-label',item.title);b.append(im,lbl);
-  b.addEventListener('click',()=>{if(!im.isConnected)return;$('lightboxImg').src=item.src;$('lightboxTitle').textContent=item.title;$('lightbox').classList.add('open')});
-  grid.append(b);
- }
+  b.append(im,create('span','gallery-label',item.title));b.addEventListener('click',()=>{if(im.isConnected)showPhoto(items,i,category)});grid.append(b);
+ });
 }
 const flirtLines=[
 ["Darling, if the stars look jealous tonight, it's because you've stolen their spotlight.","달링, 오늘 밤 별들이 질투한다면 당신이 스포트라이트를 훔쳤기 때문이에요."],
@@ -445,9 +459,14 @@ function init(){if(initialized)return;initialized=true;renderGallery();renderAdv
  for(const id of ['prevBtn','miniPrev'])$(id).addEventListener('click',previousTrack);
  $('seekBar').addEventListener('input',e=>{const dur=audio.duration||durations[currentIndex];if(Number.isFinite(dur)){audio.currentTime=dur*(Number(e.target.value)/1000);updateProgress()}});
  $('secretOpenBtn').addEventListener('click',openSecret);$('secretSubmitBtn').addEventListener('click',verifySecret);$('secretPassword').addEventListener('keydown',e=>{if(e.key==='Enter')verifySecret()});$('secretCloseBtn').addEventListener('click',closeSecret);$('secretOverlay').addEventListener('click',e=>{if(e.target===$('secretOverlay'))closeSecret()});$('newFlirtBtn').addEventListener('click',()=>{flirtIndex=(flirtIndex+1+Math.floor(Math.random()*(flirtLines.length-1)))%flirtLines.length;renderFlirt()});
- $('lightboxClose').addEventListener('click',()=>$('lightbox').classList.remove('open'));
- $('lightbox').addEventListener('click',e=>{if(e.target===$('lightbox'))$('lightbox').classList.remove('open')});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('lightbox').classList.remove('open');if($('secretOverlay').classList.contains('open'))closeSecret()}});
+ $('lightboxClose').addEventListener('click',closeLightbox);
+ $('lightboxPrev').addEventListener('click',()=>photoSlide(-1));
+ $('lightboxNext').addEventListener('click',()=>photoSlide(1));
+ $('lightbox').addEventListener('touchstart',e=>{if(e.touches.length===1)lightboxSwipeStart=[e.touches[0].clientX,e.touches[0].clientY]},{passive:true});
+ $('lightbox').addEventListener('touchend',e=>{if(!lightboxSwipeStart||e.changedTouches.length!==1)return;const dx=e.changedTouches[0].clientX-lightboxSwipeStart[0],dy=e.changedTouches[0].clientY-lightboxSwipeStart[1];lightboxSwipeStart=null;if(Math.abs(dx)>45&&Math.abs(dx)>1.2*Math.abs(dy))photoSlide(dx<0?1:-1)},{passive:true});
+ $('lightbox').addEventListener('touchcancel',()=>lightboxSwipeStart=null);
+ $('lightbox').addEventListener('click',e=>{if(e.target===$('lightbox'))closeLightbox()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeLightbox();if($('secretOverlay').classList.contains('open'))closeSecret()}else if($('lightbox').classList.contains('open')&&e.key==='ArrowLeft'){e.preventDefault();photoSlide(-1)}else if($('lightbox').classList.contains('open')&&e.key==='ArrowRight'){e.preventDefault();photoSlide(1)}});
  // Touch scroll unlock while preserving ordinary accessibility and click navigation.
  let touchStart=null;views.lock.addEventListener('touchstart',e=>{if(e.touches.length===1)touchStart=e.touches[0].clientY},{passive:true});views.lock.addEventListener('touchend',e=>{if(touchStart!==null&&e.changedTouches.length===1&&touchStart-e.changedTouches[0].clientY>65)unlock();touchStart=null},{passive:true});
  // No persistent focus/pressed styling after mouse/touch song navigation.
