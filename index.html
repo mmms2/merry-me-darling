@@ -69,70 +69,83 @@
 
 .round-control .track-skip-icon{width:23px;height:23px;display:block}.mini-controls button .track-skip-icon{width:18px;height:18px;display:block}
 
-/* Edge-only 2D festive ornaments; leave the content and mobile UI untouched */
-.christmas-edge{position:absolute;z-index:0;top:0;width:clamp(140px,13vw,225px);height:min(900px,100%);pointer-events:none;opacity:.79}
-.christmas-edge svg{width:100%;height:100%;display:block}
-.christmas-edge-left{left:0}
-.christmas-edge-right{right:0;transform:scaleX(-1)}
-@media(max-width:1250px){.christmas-edge{display:none}}
+
+/* Two large flat-illustrated Christmas trees, restricted to wide desktops. */
+.christmas-edge{position:absolute;z-index:0;bottom:-4px;top:auto;width:clamp(190px,18vw,310px);height:min(810px,94%);pointer-events:none;opacity:.95;overflow:visible}
+.christmas-edge svg{width:100%;height:100%;display:block;overflow:visible;filter:drop-shadow(0 4px 15px #f2cc7a18)}
+.christmas-edge-left{left:-32px}
+.christmas-edge-right{right:-32px;transform:scaleX(-1)}
+.christmas-edge .tree-star{filter:drop-shadow(0 0 8px #ffe6a6);animation:treeStar 2.5s ease-in-out infinite alternate}
+.christmas-edge .tree-light{filter:drop-shadow(0 0 5px #ffe4b4);animation:treeGlow 2.15s ease-in-out infinite alternate;transform-origin:center}
+.christmas-edge .tree-light:nth-of-type(3n){animation-delay:-.7s}
+.christmas-edge .tree-light:nth-of-type(4n){animation-delay:-1.2s}
+.christmas-edge .tree-snow{animation:treeGlow 3.6s ease-in-out infinite alternate}
+@keyframes treeGlow{0%,100%{opacity:.47}52%{opacity:1}}
+@keyframes treeStar{from{opacity:.7}to{opacity:1}}
+@media(max-width:1380px){.christmas-edge{display:none}}
+@media(prefers-reduced-motion:reduce){.christmas-edge .tree-light,.christmas-edge .tree-snow,.christmas-edge .tree-star{animation:none;opacity:1}}
 
 </style>
 </head>
 <body>
 <div class="site-shell">
-  <div class="christmas-edge christmas-edge-left" aria-hidden="true"><svg viewBox="0 0 195 900" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-<g fill="none" stroke="#cdb580" stroke-width="1.5" opacity=".65"><path d="M24 0v167M112 0v114M167 0v225"/></g>
-<g opacity=".87">
-<path d="M0 0 C29 26 45 70 96 89 C121 102 149 106 178 133" stroke="#83a47a" fill="none" stroke-width="5" stroke-linecap="round"/>
-<path d="M10 14l-10 23 25-9 13 22 1-27M34 38l-9 28 30-11 6 28 11-21M61 64l-5 27 25-10 7 28 10-19M94 87l-5 27 23-11 9 23 8-14M121 102l1 25 22-10 9 21 8-14" fill="#39694f" stroke="#8da982" stroke-width="1.2" stroke-linejoin="round"/>
-<path d="M0 75C19 92 31 111 42 134" stroke="#759676" stroke-width="3" fill="none"/><path d="M2 88l22-6-5 21 23-2-10 20" fill="#2c5e4b"/>
+  <div class="christmas-edge christmas-edge-left" aria-hidden="true"><svg viewBox="0 0 260 780" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<g opacity=".56" fill="#e7c89b">
+<circle cx="42" cy="47" r="2"/><circle cx="151" cy="87" r="2.3"/><circle cx="205" cy="185" r="2"/><circle cx="32" cy="306" r="2.2"/><circle cx="212" cy="416" r="2"/><circle cx="231" cy="560" r="1.8"/>
 </g>
-<g stroke="#d7bb81" stroke-width="2">
-<circle cx="24" cy="184" r="18" fill="#8e3649"/><path d="M16 181c6-10 12-10 18-2" fill="none" opacity=".55"/>
-<circle cx="112" cy="127" r="13" fill="#bd9a5f"/><path d="M107 127c3-5 7-5 10 0" fill="none" opacity=".65"/>
-<circle cx="167" cy="244" r="23" fill="#386a5b"/><path d="M157 242c7-11 13-11 19-1" fill="none" opacity=".55"/>
+<g fill="none" stroke="#e3c994" stroke-width="1.8" opacity=".7"><path d="M50 0v65M195 0v103"/></g>
+<circle cx="50" cy="74" r="11" fill="#a94f60" stroke="#eac99c" stroke-width="1.8"/>
+<circle cx="195" cy="111" r="15" fill="#c7a574" stroke="#f1d9ac" stroke-width="1.6"/>
+<g fill="#e7d9b4" opacity=".78"><path d="M221 275l2 10 10 2-10 2-2 10-2-10-10-2 10-2z"/><path d="M26 217l2 9 9 2-9 2-2 9-2-9-9-2 9-2z"/><path d="M219 465l2 9 9 2-9 2-2 9-2-9-9-2 9-2z"/></g>
+<g transform="translate(-15 72)">
+<path d="M125 82l-1 12-11 4 11 5 1 12 5-12 12-5-12-4z" class="tree-star" fill="#ffe9aa" stroke="#dfbb72" stroke-width="1.5"/>
+<path d="M126 93c-25 42-50 79-67 106h32l-38 57 31 1-44 72 32-1-52 86 28-3-48 99c34 35 88 53 126 51 49 0 97-17 131-50l-53-100 26 5-50-88h33l-44-71h30l-38-58h29c-15-27-42-69-68-106z" fill="#103e36" stroke="#7fa27c" stroke-width="2.5"/>
+<path d="M126 105l-43 97 28-8-35 64 29-5-45 75 32-9-45 92 37-6-44 103c28 25 51 34 85 39z" fill="#25594b" opacity=".8"/>
+<path d="M126 106l44 96-29-9 37 65-31-5 46 75-32-8 46 91-37-6 44 101c-30 27-52 34-89 40z" fill="#1a5044" opacity=".82"/>
+<path d="M73 248c35 13 67 10 102-2M57 321c52 23 96 24 149-2M49 409c57 32 117 33 176-4M25 490c71 38 132 43 201-3" fill="none" stroke="#cba56f" stroke-width="3.2" stroke-linecap="round" opacity=".87"/>
+<path d="M65 248c17 7 26 8 43 10M154 253c12-1 25-4 38-9M50 315c18 11 33 15 50 18M155 337c20-3 37-9 52-19M44 405c29 18 58 26 81 27M152 428c30-4 52-13 76-29" fill="none" stroke="#f0d9a7" stroke-width="1.2" opacity=".53"/>
+<g stroke="#dfb883" stroke-width="1.8">
+<circle cx="83" cy="196" r="9" fill="#b95363"/><circle cx="158" cy="224" r="11" fill="#ceae71"/><circle cx="102" cy="272" r="8" fill="#eee0b6"/><circle cx="175" cy="286" r="11" fill="#ba5967"/><circle cx="70" cy="354" r="12" fill="#cba665"/><circle cx="151" cy="365" r="8" fill="#d1ab76"/><circle cx="198" cy="411" r="11" fill="#ad5262"/><circle cx="86" cy="450" r="11" fill="#e4d1a4"/><circle cx="144" cy="482" r="12" fill="#ba6371"/><circle cx="195" cy="497" r="9" fill="#d1a96e"/>
 </g>
-<path d="M24 156v7m88-53v5m55 104v5" stroke="#f5d9a3" stroke-width="3"/>
-<g fill="#dba0a0" opacity=".8"><circle cx="18" cy="48" r="4"/><circle cx="29" cy="53" r="4"/><circle cx="37" cy="47" r="4"/><circle cx="76" cy="93" r="3"/></g>
-<g stroke="#f3e6cb" stroke-width="1.6" opacity=".72" stroke-linecap="round">
-<path d="M84 246v20m-10-10h20m-17-7 14 14m0-14-14 14"/>
-<path d="M40 364v18m-9-9h18m-15-7 12 12m0-12-12 12"/>
-<path d="M143 407v24m-12-12h24m-20-9 16 17m0-17-16 17"/>
-<path d="M90 556v18m-9-9h18m-15-7 12 12m0-12-12 12"/>
+<g fill="#ffe5a7">
+<circle class="tree-light" cx="100" cy="170" r="3.5"/><circle class="tree-light" cx="148" cy="183" r="4"/><circle class="tree-light" cx="86" cy="239" r="3"/><circle class="tree-light" cx="172" cy="254" r="4"/><circle class="tree-light" cx="114" cy="304" r="4.5"/><circle class="tree-light" cx="203" cy="333" r="3.7"/><circle class="tree-light" cx="52" cy="378" r="4"/><circle class="tree-light" cx="146" cy="401" r="4.5"/><circle class="tree-light" cx="205" cy="448" r="4"/><circle class="tree-light" cx="50" cy="465" r="4"/><circle class="tree-light" cx="121" cy="510" r="5"/><circle class="tree-light" cx="175" cy="535" r="4"/>
 </g>
-<g fill="#e2be80" opacity=".58"><circle cx="133" cy="311" r="2"/><circle cx="47" cy="446" r="2.4"/><circle cx="159" cy="528" r="1.8"/><circle cx="25" cy="613" r="2"/><circle cx="110" cy="723" r="2"/></g>
-<g opacity=".46">
-<path d="M0 748 C26 728 59 730 97 755" stroke="#88a67d" stroke-width="3.5" fill="none"/>
-<path d="M0 765l20-17 0 26 18-15 9 27 13-11 7 24" fill="#315b4b" stroke="#6b9379" stroke-width="1"/>
-<path d="M0 840c24-13 46-12 74-2" stroke="#789d7e" stroke-width="3" fill="none"/>
-</g></svg></div>
-  <div class="christmas-edge christmas-edge-right" aria-hidden="true"><svg viewBox="0 0 195 900" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-<g fill="none" stroke="#cdb580" stroke-width="1.5" opacity=".65"><path d="M24 0v167M112 0v114M167 0v225"/></g>
-<g opacity=".87">
-<path d="M0 0 C29 26 45 70 96 89 C121 102 149 106 178 133" stroke="#83a47a" fill="none" stroke-width="5" stroke-linecap="round"/>
-<path d="M10 14l-10 23 25-9 13 22 1-27M34 38l-9 28 30-11 6 28 11-21M61 64l-5 27 25-10 7 28 10-19M94 87l-5 27 23-11 9 23 8-14M121 102l1 25 22-10 9 21 8-14" fill="#39694f" stroke="#8da982" stroke-width="1.2" stroke-linejoin="round"/>
-<path d="M0 75C19 92 31 111 42 134" stroke="#759676" stroke-width="3" fill="none"/><path d="M2 88l22-6-5 21 23-2-10 20" fill="#2c5e4b"/>
+<rect x="111" y="552" width="30" height="55" rx="4" fill="#795744"/>
+<path d="M0 599c45-19 87-10 128-8 43 2 81-11 132 7v30H0z" fill="#d9d9c4" opacity=".45"/>
+<g><rect x="48" y="569" width="59" height="58" rx="5" fill="#a74653" stroke="#d8ba82" stroke-width="2"/><path d="M73 569v58M48 598h59" stroke="#f1d19b" stroke-width="7"/><path d="M79 570c-28-27-39 9-6 9 29 0 23-34 6-9z" fill="#e8c491"/>
+<rect x="151" y="583" width="65" height="44" rx="4" fill="#d4b076" stroke="#f2d7a4" stroke-width="2"/><path d="M183 583v44M151 603h65" stroke="#af5665" stroke-width="7"/><path d="M186 583c-23-19-25 7-3 7 22 0 18-24 3-7z" fill="#a44958"/></g>
 </g>
-<g stroke="#d7bb81" stroke-width="2">
-<circle cx="24" cy="184" r="18" fill="#8e3649"/><path d="M16 181c6-10 12-10 18-2" fill="none" opacity=".55"/>
-<circle cx="112" cy="127" r="13" fill="#bd9a5f"/><path d="M107 127c3-5 7-5 10 0" fill="none" opacity=".65"/>
-<circle cx="167" cy="244" r="23" fill="#386a5b"/><path d="M157 242c7-11 13-11 19-1" fill="none" opacity=".55"/>
+<g class="tree-snow" fill="#fff3d9" opacity=".75"><circle cx="206" cy="671" r="3"/><circle cx="22" cy="588" r="3"/><circle cx="231" cy="740" r="2.7"/><circle cx="93" cy="741" r="2"/></g>
+</svg></div>
+  <div class="christmas-edge christmas-edge-right" aria-hidden="true"><svg viewBox="0 0 260 780" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<g opacity=".56" fill="#e7c89b">
+<circle cx="42" cy="47" r="2"/><circle cx="151" cy="87" r="2.3"/><circle cx="205" cy="185" r="2"/><circle cx="32" cy="306" r="2.2"/><circle cx="212" cy="416" r="2"/><circle cx="231" cy="560" r="1.8"/>
 </g>
-<path d="M24 156v7m88-53v5m55 104v5" stroke="#f5d9a3" stroke-width="3"/>
-<g fill="#dba0a0" opacity=".8"><circle cx="18" cy="48" r="4"/><circle cx="29" cy="53" r="4"/><circle cx="37" cy="47" r="4"/><circle cx="76" cy="93" r="3"/></g>
-<g stroke="#f3e6cb" stroke-width="1.6" opacity=".72" stroke-linecap="round">
-<path d="M84 246v20m-10-10h20m-17-7 14 14m0-14-14 14"/>
-<path d="M40 364v18m-9-9h18m-15-7 12 12m0-12-12 12"/>
-<path d="M143 407v24m-12-12h24m-20-9 16 17m0-17-16 17"/>
-<path d="M90 556v18m-9-9h18m-15-7 12 12m0-12-12 12"/>
+<g fill="none" stroke="#e3c994" stroke-width="1.8" opacity=".7"><path d="M50 0v65M195 0v103"/></g>
+<circle cx="50" cy="74" r="11" fill="#a94f60" stroke="#eac99c" stroke-width="1.8"/>
+<circle cx="195" cy="111" r="15" fill="#c7a574" stroke="#f1d9ac" stroke-width="1.6"/>
+<g fill="#e7d9b4" opacity=".78"><path d="M221 275l2 10 10 2-10 2-2 10-2-10-10-2 10-2z"/><path d="M26 217l2 9 9 2-9 2-2 9-2-9-9-2 9-2z"/><path d="M219 465l2 9 9 2-9 2-2 9-2-9-9-2 9-2z"/></g>
+<g transform="translate(-15 72)">
+<path d="M125 82l-1 12-11 4 11 5 1 12 5-12 12-5-12-4z" class="tree-star" fill="#ffe9aa" stroke="#dfbb72" stroke-width="1.5"/>
+<path d="M126 93c-25 42-50 79-67 106h32l-38 57 31 1-44 72 32-1-52 86 28-3-48 99c34 35 88 53 126 51 49 0 97-17 131-50l-53-100 26 5-50-88h33l-44-71h30l-38-58h29c-15-27-42-69-68-106z" fill="#103e36" stroke="#7fa27c" stroke-width="2.5"/>
+<path d="M126 105l-43 97 28-8-35 64 29-5-45 75 32-9-45 92 37-6-44 103c28 25 51 34 85 39z" fill="#25594b" opacity=".8"/>
+<path d="M126 106l44 96-29-9 37 65-31-5 46 75-32-8 46 91-37-6 44 101c-30 27-52 34-89 40z" fill="#1a5044" opacity=".82"/>
+<path d="M73 248c35 13 67 10 102-2M57 321c52 23 96 24 149-2M49 409c57 32 117 33 176-4M25 490c71 38 132 43 201-3" fill="none" stroke="#cba56f" stroke-width="3.2" stroke-linecap="round" opacity=".87"/>
+<path d="M65 248c17 7 26 8 43 10M154 253c12-1 25-4 38-9M50 315c18 11 33 15 50 18M155 337c20-3 37-9 52-19M44 405c29 18 58 26 81 27M152 428c30-4 52-13 76-29" fill="none" stroke="#f0d9a7" stroke-width="1.2" opacity=".53"/>
+<g stroke="#dfb883" stroke-width="1.8">
+<circle cx="83" cy="196" r="9" fill="#b95363"/><circle cx="158" cy="224" r="11" fill="#ceae71"/><circle cx="102" cy="272" r="8" fill="#eee0b6"/><circle cx="175" cy="286" r="11" fill="#ba5967"/><circle cx="70" cy="354" r="12" fill="#cba665"/><circle cx="151" cy="365" r="8" fill="#d1ab76"/><circle cx="198" cy="411" r="11" fill="#ad5262"/><circle cx="86" cy="450" r="11" fill="#e4d1a4"/><circle cx="144" cy="482" r="12" fill="#ba6371"/><circle cx="195" cy="497" r="9" fill="#d1a96e"/>
 </g>
-<g fill="#e2be80" opacity=".58"><circle cx="133" cy="311" r="2"/><circle cx="47" cy="446" r="2.4"/><circle cx="159" cy="528" r="1.8"/><circle cx="25" cy="613" r="2"/><circle cx="110" cy="723" r="2"/></g>
-<g opacity=".46">
-<path d="M0 748 C26 728 59 730 97 755" stroke="#88a67d" stroke-width="3.5" fill="none"/>
-<path d="M0 765l20-17 0 26 18-15 9 27 13-11 7 24" fill="#315b4b" stroke="#6b9379" stroke-width="1"/>
-<path d="M0 840c24-13 46-12 74-2" stroke="#789d7e" stroke-width="3" fill="none"/>
-</g></svg></div>
-  <aside class="scene-copy">
+<g fill="#ffe5a7">
+<circle class="tree-light" cx="100" cy="170" r="3.5"/><circle class="tree-light" cx="148" cy="183" r="4"/><circle class="tree-light" cx="86" cy="239" r="3"/><circle class="tree-light" cx="172" cy="254" r="4"/><circle class="tree-light" cx="114" cy="304" r="4.5"/><circle class="tree-light" cx="203" cy="333" r="3.7"/><circle class="tree-light" cx="52" cy="378" r="4"/><circle class="tree-light" cx="146" cy="401" r="4.5"/><circle class="tree-light" cx="205" cy="448" r="4"/><circle class="tree-light" cx="50" cy="465" r="4"/><circle class="tree-light" cx="121" cy="510" r="5"/><circle class="tree-light" cx="175" cy="535" r="4"/>
+</g>
+<rect x="111" y="552" width="30" height="55" rx="4" fill="#795744"/>
+<path d="M0 599c45-19 87-10 128-8 43 2 81-11 132 7v30H0z" fill="#d9d9c4" opacity=".45"/>
+<g><rect x="48" y="569" width="59" height="58" rx="5" fill="#a74653" stroke="#d8ba82" stroke-width="2"/><path d="M73 569v58M48 598h59" stroke="#f1d19b" stroke-width="7"/><path d="M79 570c-28-27-39 9-6 9 29 0 23-34 6-9z" fill="#e8c491"/>
+<rect x="151" y="583" width="65" height="44" rx="4" fill="#d4b076" stroke="#f2d7a4" stroke-width="2"/><path d="M183 583v44M151 603h65" stroke="#af5665" stroke-width="7"/><path d="M186 583c-23-19-25 7-3 7 22 0 18-24 3-7z" fill="#a44958"/></g>
+</g>
+<g class="tree-snow" fill="#fff3d9" opacity=".75"><circle cx="206" cy="671" r="3"/><circle cx="22" cy="588" r="3"/><circle cx="231" cy="740" r="2.7"/><circle cx="93" cy="741" r="2"/></g>
+</svg></div>
+    <aside class="scene-copy">
     <div class="side-ornament" aria-hidden="true">✧</div>
     <div class="eyebrow">QUÉBEC · DECEMBER 2026</div>
     <h1 class="editorial-title"><span>Merry Me,</span><em>Darling!</em></h1><div class="korean-mark">메리 미, 달링! 🎄</div>
