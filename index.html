@@ -290,7 +290,7 @@ const audio=$('musicAudio');
 const views={lock:$('viewLock'),home:$('viewHome'),app:$('viewApp')};
 const appTitles={music:'HOLIDAY RADIO',gallery:'PHOTO GALLERY',messages:'MESSAGES',notes:'LOVE NOTES',santa:'SANTA LIST',guide:'PLAY GUIDE',flirt:'FLIRT LAB',advent:'DECEMBER CARDS',workshop:'WORKSHOP',noflirt:'NO FLIRT CHALLENGE',delivery:'DESTINY EXPRESS',presents:'SURPRISE GIFTS'};
 const appIds={music:'appMusic',gallery:'appGallery',messages:'appMessages',notes:'appNotes',santa:'appSanta',guide:'appGuide',flirt:'appFlirt',advent:'appAdvent',workshop:'appWorkshop',noflirt:'appNoFlirt',delivery:'appDelivery',presents:'appPresents'};
-const gallery=[]if(Array.isArray(window.EXTRA_GALLERY))gallery.push(...window.EXTRA_GALLERY);
+const gallery=[];if(Array.isArray(window.EXTRA_GALLERY))gallery.push(...window.EXTRA_GALLERY);
 let currentIndex=0, activeView='lock', activeApp='music', userPaused=false, autoplayBlocked=false, toastTimer=0, initialized=false;
 const durations=[227.64,249.984,225.6,286.824];
 function niceTime(sec){if(!Number.isFinite(sec)||sec<0)sec=0;return Math.floor(sec/60)+':'+String(Math.floor(sec%60)).padStart(2,'0')}
