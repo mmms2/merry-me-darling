@@ -290,35 +290,7 @@ const audio=$('musicAudio');
 const views={lock:$('viewLock'),home:$('viewHome'),app:$('viewApp')};
 const appTitles={music:'HOLIDAY RADIO',gallery:'PHOTO GALLERY',messages:'MESSAGES',notes:'LOVE NOTES',santa:'SANTA LIST',guide:'PLAY GUIDE',flirt:'FLIRT LAB',advent:'DECEMBER CARDS',workshop:'WORKSHOP',noflirt:'NO FLIRT CHALLENGE',delivery:'DESTINY EXPRESS',presents:'SURPRISE GIFTS'};
 const appIds={music:'appMusic',gallery:'appGallery',messages:'appMessages',notes:'appNotes',santa:'appSanta',guide:'appGuide',flirt:'appFlirt',advent:'appAdvent',workshop:'appWorkshop',noflirt:'appNoFlirt',delivery:'appDelivery',presents:'appPresents'};
-const gallery=[
- {src:'assets/images/winter-proposal.webp',title:'겨울밤의 청혼',groups:['첫사랑','플러팅']},
- {src:'assets/images/reindeer.webp',title:'루돌프의 장미',groups:['플러팅','코스튬']},
- {src:'assets/images/santa.webp',title:'산타의 선물',groups:['코스튬']},
- {src:'assets/images/royal-proposal.webp',title:'왕자님의 청혼',groups:['첫사랑','플러팅','코스튬']},
- {src:'assets/images/mistletoe.webp',title:'겨우살이의 마법',groups:['플러팅','코스튬']},
- {src:'assets/images/angel.webp',title:'크리스마스 천사',groups:['코스튬']},
- {src:'assets/images/theo-main.webp',title:'테오의 일상',groups:['일상','플러팅']},
- {src:'assets/images/theo-blushing.webp',title:'얼굴 붉힘',groups:['첫사랑']} ,
- {src:'assets/images/theo-coffee-shop.webp',title:'카페에서',groups:['일상']} ,
- {src:'assets/images/theo-crying-street.webp',title:'겨울밤의 오열',groups:['눈물']} ,
- {src:'assets/images/theo-decorating-tree.webp',title:'크리스마스 트리 장식',groups:['일상']} ,
- {src:'assets/images/theo-elf-costume.webp',title:'엘프 코스튬',groups:['코스튬']} ,
- {src:'assets/images/theo-flirting.webp',title:'능글맞은 플러팅',groups:['플러팅']} ,
- {src:'assets/images/theo-flower-gift.webp',title:'장미 한 송이',groups:['플러팅','첫사랑']} ,
- {src:'assets/images/theo-flustered.webp',title:'심쿵',groups:['첫사랑']} ,
- {src:'assets/images/theo-flying-kiss.webp',title:'손키스 한 번',groups:['플러팅']} ,
- {src:'assets/images/theo-hand-heart.webp',title:'손하트',groups:['플러팅','첫사랑']} ,
- {src:'assets/images/theo-heart-racing.webp',title:'설레는 주접',groups:['첫사랑','플러팅']} ,
- {src:'assets/images/theo-ribbon-costume.webp',title:'리본 코스튬',groups:['코스튬','플러팅']} ,
- {src:'assets/images/theo-santa-flirt.webp',title:'산타의 유혹',groups:['코스튬','플러팅']} ,
- {src:'assets/images/theo-santa-playful.webp',title:'능글맞은 산타',groups:['코스튬','플러팅']} ,
- {src:'assets/images/theo-santa-smile.webp',title:'산타의 미소',groups:['코스튬']} ,
- {src:'assets/images/theo-snowman.webp',title:'눈사람 만들기',groups:['일상']} ,
- {src:'assets/images/theo-snowy-umbrella.webp',title:'눈 오는 날의 우산',groups:['일상']} ,
- {src:'assets/images/theo-teary-eyes.webp',title:'눈물 고인 눈',groups:['눈물']} ,
- {src:'assets/images/theo-winter-prince.webp',title:'겨울 왕자',groups:['코스튬','플러팅']} ,
- {src:'assets/images/theo-wiping-tears.webp',title:'눈물을 닦으며',groups:['눈물']} 
-];if(Array.isArray(window.EXTRA_GALLERY))gallery.push(...window.EXTRA_GALLERY);
+const gallery=[]if(Array.isArray(window.EXTRA_GALLERY))gallery.push(...window.EXTRA_GALLERY);
 let currentIndex=0, activeView='lock', activeApp='music', userPaused=false, autoplayBlocked=false, toastTimer=0, initialized=false;
 const durations=[227.64,249.984,225.6,286.824];
 function niceTime(sec){if(!Number.isFinite(sec)||sec<0)sec=0;return Math.floor(sec/60)+':'+String(Math.floor(sec%60)).padStart(2,'0')}
@@ -359,7 +331,7 @@ function closeLightbox(){$('lightbox').classList.remove('open');lightboxSwipeSta
 function showPhoto(items,i,category){visibleAlbum=category;lightboxAlbum=items.slice();lightboxIndex=i;updateLightbox();$('lightbox').classList.add('open');$('lightboxClose').focus({preventScroll:true})}
 function renderGallery(category='전체'){
  visibleAlbum=category;
- const cats=['전체',...['첫사랑','플러팅','일상','눈물','코스튬'].filter(name=>gallery.some(g=>(g.groups||[g.group]).includes(name)))];
+ const cats=['전체','첫사랑','플러팅','일상','눈물','코스튬'];
  const tabs=$('galleryTabs');tabs.replaceChildren();
  for(const name of cats){const b=create('button','gallery-filter'+(name===category?' active':''),name);b.type='button';b.setAttribute('aria-pressed',String(name===category));b.addEventListener('click',()=>renderGallery(name));tabs.append(b)}
  const grid=$('galleryGrid');grid.replaceChildren();
