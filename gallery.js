@@ -150,21 +150,21 @@ window.EXTRA_GALLERY = [
     "src": "assets/images/theo-new-022.webp",
     "title": "손끝 하트 3",
     "groups": [
-      "플러팅"
+      "코스튬"
     ]
   },
   {
     "src": "assets/images/theo-new-023.webp",
     "title": "손끝 하트 4",
     "groups": [
-      "플러팅"
+      "코스튬"
     ]
   },
   {
     "src": "assets/images/theo-new-024.webp",
     "title": "손끝 하트 5",
     "groups": [
-      "플러팅"
+      "코스튬"
     ]
   },
   {
@@ -325,35 +325,35 @@ window.EXTRA_GALLERY = [
     "src": "assets/images/theo-new-047.webp",
     "title": "선물을 건네며",
     "groups": [
-      "첫사랑"
+      "코스튬"
     ]
   },
   {
     "src": "assets/images/theo-new-048.webp",
     "title": "산타의 선물",
     "groups": [
-      "첫사랑"
+      "코스튬"
     ]
   },
   {
     "src": "assets/images/theo-new-049.webp",
     "title": "눈부신 청혼",
     "groups": [
-      "첫사랑"
+      "코스튬"
     ]
   },
   {
     "src": "assets/images/theo-new-050.webp",
     "title": "별빛의 반지",
     "groups": [
-      "첫사랑"
+      "코스튬"
     ]
   },
   {
     "src": "assets/images/theo-new-051.webp",
     "title": "반지를 준비한 날",
     "groups": [
-      "첫사랑"
+      "코스튬"
     ]
   },
   {
@@ -395,7 +395,7 @@ window.EXTRA_GALLERY = [
     "src": "assets/images/theo-new-057.webp",
     "title": "반지와 미소",
     "groups": [
-      "첫사랑"
+      "코스튬"
     ]
   },
   {
@@ -430,42 +430,42 @@ window.EXTRA_GALLERY = [
     "src": "assets/images/theo-new-062.webp",
     "title": "겨울의 선물",
     "groups": [
-      "첫사랑"
+      "코스튬"
     ]
   },
   {
     "src": "assets/images/theo-new-063.webp",
     "title": "크리스마스 플러팅 1",
     "groups": [
-      "플러팅"
+      "코스튬"
     ]
   },
   {
     "src": "assets/images/theo-new-064.webp",
     "title": "크리스마스 플러팅 2",
     "groups": [
-      "플러팅"
+      "코스튬"
     ]
   },
   {
     "src": "assets/images/theo-new-065.webp",
     "title": "크리스마스 플러팅 3",
     "groups": [
-      "플러팅"
+      "코스튬"
     ]
   },
   {
     "src": "assets/images/theo-new-066.webp",
     "title": "크리스마스 플러팅 4",
     "groups": [
-      "플러팅"
+      "코스튬"
     ]
   },
   {
     "src": "assets/images/theo-new-067.webp",
     "title": "크리스마스 플러팅 5",
     "groups": [
-      "플러팅"
+      "코스튬"
     ]
   },
   {
@@ -626,7 +626,7 @@ window.EXTRA_GALLERY = [
     "src": "assets/images/theo-new-090.webp",
     "title": "크리스마스 선물 5",
     "groups": [
-      "플러팅"
+      "코스튬"
     ]
   },
   {
