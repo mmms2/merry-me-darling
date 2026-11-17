@@ -315,7 +315,7 @@ function nextTrack(fromEnded=false){selectTrack(currentIndex+1,true,fromEnded)}
 function previousTrack(){selectTrack(currentIndex-1,true)}
 function togglePlay(){if(audio.paused||audio.ended){userPaused=false;attemptPlay('gesture')}else{userPaused=true;audio.pause();autoplayBlocked=false;noticeAutoplay()}}
 function updateProgress(){const dur=Number.isFinite(audio.duration)&&audio.duration>0?audio.duration:durations[currentIndex];const frac=dur?Math.min(1,audio.currentTime/dur):0;$('currentTime').textContent=niceTime(audio.currentTime);$('duration').textContent=niceTime(dur);$('seekBar').value=String(Math.round(frac*1000));$('miniProgress').style.width=(frac*100).toFixed(2)+'%'}
-let visibleAlbum='전체',lightboxAlbum=[],lightboxIndex=0,lightboxSwipeStart=null;
+let visibleAlbum='첫사랑',lightboxAlbum=[],lightboxIndex=0,lightboxSwipeStart=null;
 function updateLightbox(){
  if(!lightboxAlbum.length)return;
  lightboxIndex=(lightboxIndex+lightboxAlbum.length)%lightboxAlbum.length;
@@ -329,13 +329,13 @@ function updateLightbox(){
 function photoSlide(n){if(!$('lightbox').classList.contains('open')||lightboxAlbum.length<2)return;lightboxIndex=(lightboxIndex+n+lightboxAlbum.length)%lightboxAlbum.length;updateLightbox()}
 function closeLightbox(){$('lightbox').classList.remove('open');lightboxSwipeStart=null}
 function showPhoto(items,i,category){visibleAlbum=category;lightboxAlbum=items.slice();lightboxIndex=i;updateLightbox();$('lightbox').classList.add('open');$('lightboxClose').focus({preventScroll:true})}
-function renderGallery(category='전체'){
+function renderGallery(category='첫사랑'){
  visibleAlbum=category;
- const cats=['전체','첫사랑','플러팅','일상','눈물','코스튬'];
+ const cats=['첫사랑','플러팅','일상','눈물','코스튬'];
  const tabs=$('galleryTabs');tabs.replaceChildren();
  for(const name of cats){const b=create('button','gallery-filter'+(name===category?' active':''),name);b.type='button';b.setAttribute('aria-pressed',String(name===category));b.addEventListener('click',()=>renderGallery(name));tabs.append(b)}
  const grid=$('galleryGrid');grid.replaceChildren();
- const items=gallery.filter(g=>category==='전체'||(g.groups||[g.group]).includes(category));
+ const items=gallery.filter(g=>(g.groups||[g.group]).includes(category));
  if(!items.length){grid.append(create('p','gallery-empty','이 앨범에는 아직 사진이 없어요.'));return}
  items.forEach((item,i)=>{
   const b=create('button','gallery-tile');b.type='button';b.setAttribute('aria-label',item.title+' 사진 확대');
